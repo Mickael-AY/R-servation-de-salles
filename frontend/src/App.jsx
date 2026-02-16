@@ -9,28 +9,40 @@ import PrivateRoute from './components/PrivateRoute.jsx';
 import Home from './pages/Home.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
-import Dashboard from './pages/Dashboard.jsx';
+import Planning from './pages/Planning.jsx';
+import MyReservations from './pages/MyReservations.jsx';
+import Profile from './pages/Profile.jsx';
+import Room3D from './pages/Room3D.jsx';
 
 function App() {
   const { loading } = useAuth();
 
-  if (loading) return <div><p>Chargement...</p></div>;
+  if (loading) return <div className="loading"><p>Chargement...</p></div>;
 
   return (
     <Routes>
       {/* Routes AVEC Header + Footer */}
       <Route element={<MainLayout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={
-          <PrivateRoute><Dashboard /></PrivateRoute>
+        <Route path="/planning" element={
+          <PrivateRoute><Planning /></PrivateRoute>
+        } />
+        <Route path="/mes-reservations" element={
+          <PrivateRoute><MyReservations /></PrivateRoute>
+        } />
+        <Route path="/profil" element={
+          <PrivateRoute><Profile /></PrivateRoute>
         } />
       </Route>
 
-      {/* Routes SANS Header (plein écran) */}
+      {/* Routes SANS Header (plein ecran) */}
       <Route element={<AuthLayout />}>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Route>
+
+      {/* Route plein ecran 3D (sans layout) */}
+      <Route path="/salle-3d" element={<Room3D />} />
 
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>

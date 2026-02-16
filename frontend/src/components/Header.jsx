@@ -12,24 +12,28 @@ function Header() {
   };
 
   return (
-    <header>
-      <Link to="/">Starter Kit</Link>
+    <header className="app-header">
+      <Link to="/" className="header-brand">TechSpace</Link>
 
-      <nav>
-        <NavLink to="/">Accueil</NavLink>
-        {isAuthenticated && <NavLink to="/dashboard">Dashboard</NavLink>}
+      <nav className="header-nav">
+        {isAuthenticated && (
+          <>
+            <NavLink to="/planning">Planning</NavLink>
+            <NavLink to="/mes-reservations">Mes reservations</NavLink>
+          </>
+        )}
       </nav>
 
-      <div>
+      <div className="header-actions">
         {isAuthenticated ? (
           <>
-            <span>{user?.firstname}</span>
-            <button onClick={handleLogout}>Déconnexion</button>
+            <Link to="/profil" className="header-user">{user?.firstname} {user?.lastname}</Link>
+            <button onClick={handleLogout} className="btn btn-small">Deconnexion</button>
           </>
         ) : (
           <>
-            <Link to="/login">Connexion</Link>
-            <Link to="/register">S'inscrire</Link>
+            <Link to="/login" className="btn btn-small">Connexion</Link>
+            <Link to="/register" className="btn btn-small btn-primary">S&apos;inscrire</Link>
           </>
         )}
       </div>

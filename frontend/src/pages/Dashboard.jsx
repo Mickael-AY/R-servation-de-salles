@@ -1,14 +1,9 @@
-import { useAuth } from '../hooks/useAuth.js';
+// pages/Dashboard.jsx
+// Redirige vers /planning (ancienne page remplacee)
+import { Navigate } from 'react-router-dom';
 
 function Dashboard() {
-  const { user } = useAuth();
-
-  return (
-    <div>
-      <h1>Bienvenue {user?.firstname} !</h1>
-      <p>Email : {user?.email}</p>
-    </div>
-  );
+  return <Navigate to="/planning" replace />;
 }
 
 export default Dashboard;
