@@ -193,14 +193,22 @@ function Chair({ position, rotation = [0, 0, 0] }) {
 
 function Chairs() {
   const d = [
-    { p: [-1, 0, -1], r: [0, 0, 0] },
-    { p: [0, 0, -1], r: [0, 0, 0] },
-    { p: [1, 0, -1], r: [0, 0, 0] },
-    { p: [-1, 0, 1], r: [0, Math.PI, 0] },
-    { p: [0, 0, 1], r: [0, Math.PI, 0] },
-    { p: [1, 0, 1], r: [0, Math.PI, 0] },
-    { p: [-1.85, 0, 0], r: [0, Math.PI / 2, 0] },
-    { p: [1.85, 0, 0], r: [0, -Math.PI / 2, 0] }
+    // Back row (4 chairs)
+    { p: [-1.1, 0, -1], r: [0, 0, 0] },
+    { p: [-0.35, 0, -1], r: [0, 0, 0] },
+    { p: [0.35, 0, -1], r: [0, 0, 0] },
+    { p: [1.1, 0, -1], r: [0, 0, 0] },
+    // Front row (4 chairs)
+    { p: [-1.1, 0, 1], r: [0, Math.PI, 0] },
+    { p: [-0.35, 0, 1], r: [0, Math.PI, 0] },
+    { p: [0.35, 0, 1], r: [0, Math.PI, 0] },
+    { p: [1.1, 0, 1], r: [0, Math.PI, 0] },
+    // Left side (2 chairs)
+    { p: [-1.85, 0, -0.35], r: [0, Math.PI / 2, 0] },
+    { p: [-1.85, 0, 0.35], r: [0, Math.PI / 2, 0] },
+    // Right side (2 chairs)
+    { p: [1.85, 0, -0.35], r: [0, -Math.PI / 2, 0] },
+    { p: [1.85, 0, 0.35], r: [0, -Math.PI / 2, 0] }
   ];
   return <group>{d.map((c, i) => <Chair key={i} position={c.p} rotation={c.r} />)}</group>;
 }
