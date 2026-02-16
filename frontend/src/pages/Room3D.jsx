@@ -1,7 +1,7 @@
 // pages/Room3D.jsx
-import { Suspense, useRef, useState, useMemo, useEffect } from 'react';
+import { Suspense, useRef, useState, Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Html, Environment } from '@react-three/drei';
 import { EffectComposer, Bloom, Vignette } from '@react-three/postprocessing';
 import * as THREE from 'three';
@@ -577,15 +577,18 @@ function PowerOutlet({ position, rotation = [0, 0, 0] }) {
 
 // ─── Camera mode switch ───
 function CameraMode({ mode }) {
-  const { camera } = useThree();
+  const prevMode = useRef(mode);
 
-  useEffect(() => {
-    if (mode === 'visit') {
-      camera.position.set(0, 1.65, 2.5);
-    } else {
-      camera.position.set(5, 3.2, 5);
+  useFrame(({ camera }) => {
+    if (prevMode.current !== mode) {
+      prevMode.current = mode;
+      if (mode === 'visit') {
+        camera.position.set(0, 1.65, 2.5);
+      } else {
+        camera.position.set(5, 3.2, 5);
+      }
     }
-  }, [mode, camera]);
+  });
 
   return null;
 }
@@ -690,7 +693,7 @@ export default function Room3D() {
       <Suspense fallback={<LoadingScreen />}>
         <Canvas
           shadows
-          camera={{ position: [8, 5, 8], fov: 50 }}
+          camera={{ position: [5, 3.2, 5], fov: 50 }}
           style={{ background: 'linear-gradient(180deg, #dbeafe 0%, #eff6ff 40%, #f8fafc 100%)' }}
           gl={{ antialias: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.0 }}
         >
