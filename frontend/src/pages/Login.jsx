@@ -12,7 +12,7 @@ function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || '/dashboard';
+  const from = location.state?.from?.pathname || '/planning';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,28 +30,30 @@ function Login() {
   };
 
   return (
-    <div>
+    <div className="auth-card">
       <h1>Connexion</h1>
 
-      {error && <p style={{color: 'red'}}>{error}</p>}
+      {error && <div className="alert alert-error">{error}</div>}
 
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label>Email</label>
           <input type="email" value={email}
             onChange={(e) => setEmail(e.target.value)} required />
         </div>
-        <div>
+        <div className="form-group">
           <label>Mot de passe</label>
           <input type="password" value={password}
             onChange={(e) => setPassword(e.target.value)} required />
         </div>
-        <button type="submit" disabled={loading}>
-          {loading ? 'Connexion...' : 'Se connecter'}
-        </button>
+        <div className="form-actions">
+          <button type="submit" className="btn btn-primary" disabled={loading}>
+            {loading ? 'Connexion...' : 'Se connecter'}
+          </button>
+        </div>
       </form>
 
-      <p>Pas de compte ? <Link to="/register">S'inscrire</Link></p>
+      <p className="auth-link">Pas de compte ? <Link to="/register">S&apos;inscrire</Link></p>
     </div>
   );
 }

@@ -34,7 +34,7 @@ function Register() {
     }
 
     if (formData.password.length < 6) {
-      setError('Le mot de passe doit contenir au moins 6 caractères');
+      setError('Le mot de passe doit contenir au moins 6 caracteres');
       return;
     }
 
@@ -47,7 +47,7 @@ function Register() {
         email: formData.email,
         password: formData.password
       });
-      navigate('/dashboard');
+      navigate('/planning');
     } catch (err) {
       setError(err.message || 'Erreur lors de l\'inscription');
     } finally {
@@ -56,35 +56,37 @@ function Register() {
   };
 
   return (
-    <div>
-      <h1>Créer un compte</h1>
+    <div className="auth-card">
+      <h1>Creer un compte</h1>
 
-      {error && <p style={{color: 'red'}}>{error}</p>}
+      {error && <div className="alert alert-error">{error}</div>}
 
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Prénom</label>
-          <input
-            type="text"
-            name="firstname"
-            value={formData.firstname}
-            onChange={handleChange}
-            required
-            disabled={loading}
-          />
+        <div className="form-row">
+          <div className="form-group">
+            <label>Prenom</label>
+            <input
+              type="text"
+              name="firstname"
+              value={formData.firstname}
+              onChange={handleChange}
+              required
+              disabled={loading}
+            />
+          </div>
+          <div className="form-group">
+            <label>Nom</label>
+            <input
+              type="text"
+              name="lastname"
+              value={formData.lastname}
+              onChange={handleChange}
+              required
+              disabled={loading}
+            />
+          </div>
         </div>
-        <div>
-          <label>Nom</label>
-          <input
-            type="text"
-            name="lastname"
-            value={formData.lastname}
-            onChange={handleChange}
-            required
-            disabled={loading}
-          />
-        </div>
-        <div>
+        <div className="form-group">
           <label>Email</label>
           <input
             type="email"
@@ -95,7 +97,7 @@ function Register() {
             disabled={loading}
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Mot de passe</label>
           <input
             type="password"
@@ -106,7 +108,7 @@ function Register() {
             disabled={loading}
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>Confirmer le mot de passe</label>
           <input
             type="password"
@@ -117,13 +119,15 @@ function Register() {
             disabled={loading}
           />
         </div>
-        <button type="submit" disabled={loading}>
-          {loading ? 'Inscription...' : 'S\'inscrire'}
-        </button>
+        <div className="form-actions">
+          <button type="submit" className="btn btn-primary" disabled={loading}>
+            {loading ? 'Inscription...' : 'S\'inscrire'}
+          </button>
+        </div>
       </form>
 
-      <p>
-        Déjà un compte ? <Link to="/login">Se connecter</Link>
+      <p className="auth-link">
+        Deja un compte ? <Link to="/login">Se connecter</Link>
       </p>
     </div>
   );
