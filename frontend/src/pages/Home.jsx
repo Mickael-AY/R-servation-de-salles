@@ -16,11 +16,13 @@ function Home() {
             <>
               <Link to="/planning" className="btn btn-primary">Voir le planning</Link>
               <Link to="/salle-3d" className="btn btn-secondary">Visite 3D de la salle</Link>
+              <Link to="/littlest-tokyo" className="btn btn-secondary">Littlest Tokyo 3D</Link>
             </>
           ) : (
             <>
               <Link to="/register" className="btn btn-primary">Commencer</Link>
               <Link to="/salle-3d" className="btn btn-secondary">Visite 3D de la salle</Link>
+              <Link to="/littlest-tokyo" className="btn btn-secondary">Littlest Tokyo 3D</Link>
             </>
           )}
         </div>

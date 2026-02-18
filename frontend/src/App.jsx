@@ -13,6 +13,7 @@ import Planning from './pages/Planning.jsx';
 import MyReservations from './pages/MyReservations.jsx';
 import Profile from './pages/Profile.jsx';
 import Room3D from './pages/Room3D.jsx';
+import LittlestTokyo from './pages/LittlestTokyo.jsx';
 
 function App() {
   const { loading } = useAuth();
@@ -41,8 +42,9 @@ function App() {
         <Route path="/register" element={<Register />} />
       </Route>
 
-      {/* Route plein ecran 3D (sans layout) */}
+      {/* Routes plein ecran 3D (sans layout) */}
       <Route path="/salle-3d" element={<Room3D />} />
+      <Route path="/littlest-tokyo" element={<LittlestTokyo />} />
 
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
